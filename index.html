@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>My first Vue app</title>
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	</head>
-	<body>
-		<div id="todo-list">
-			<input v-model="item">
-			<button v-on:click="addTodo">追加</button>
-			<ul v-for="(todo, index) in todos">
-				<li>{{ todo }}<button v-on:click="deleteTodo(index)">削除</button></li>
-			</ul>
-		</div>
+  <head>
+    <title>My first Vue app</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="todo-list">
+      <input v-model="item">
+      <button v-on:click="addTodo">追加</button>
+      <ul v-for="(todo, index) in todos">
+        <li>{{ todo }}<button v-on:click="deleteTodo(index)">削除</button></li>
+      </ul>
+    </div>
 
-		<script>
-			var todo = new Vue({
-				el: '#todo-list',
-				data: {
-					item: '',
-					todos: [
-					]
-				},
-				methods: {
-					addTodo: function() {
-						if (this.item === '') {
-							alert('入力がないです')
-							return
-						}
-						this.todos.push(this.item)
-						this.item = ''
-						localStorage.setItem('todo', this.todos)
-					},
-					deleteTodo: function(deleteIndex) {
-						this.todos.splice(deleteIndex, 1)
-						localStorage.setItem('todo', this.todos)
-					}
-				},
-				created: function() {
-					this.todos = localStorage.getItem('todo').split(',')
-				}
-			})
+    <script>
+      var todo = new Vue({
+        el: '#todo-list',
+        data: {
+          item: '',
+          todos: [
+          ]
+        },
+        methods: {
+          addTodo: function() {
+            if (this.item === '') {
+              alert('入力がないです')
+              return
+            }
+            this.todos.push(this.item)
+            this.item = ''
+            localStorage.setItem('todo', this.todos)
+          },
+          deleteTodo: function(deleteIndex) {
+            this.todos.splice(deleteIndex, 1)
+            localStorage.setItem('todo', this.todos)
+          }
+        },
+        created: function() {
+          this.todos = localStorage.getItem('todo').split(',')
+        }
+      })
 
-		</script>
-	</body>
+    </script>
+  </body>
 </html>
